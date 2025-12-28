@@ -1,2 +1,3 @@
-# aip-c01-study-notes
-Study notes for the AWS Certified Generative AI Developer - Professional exam (AIP-C01)
+# AWS Certified Generative AI Developer - Professional (AIP-C01 - English) Exam Study Notes
+
+## Useful Links
