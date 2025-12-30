@@ -201,7 +201,7 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 
 ### ElastiCache & MemoryDB
 
-- **ElastiCache (Redis/Valkey)** – Provides in‑memory vector search for ultra‑low‑latency queries.
+- **ElastiCache (Valkey)** – Provides in‑memory vector search for ultra‑low‑latency queries.
 - **MemoryDB** – Durable, in‑memory vector store; fully managed and designed for high‑throughput workloads.
 
 ### DynamoDB
@@ -212,6 +212,11 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 
 - **Pinecone** – Managed, serverless vector database that automatically scales and offers simple APIs.  It integrates with AWS services and Bedrock Knowledge Bases as an external vector store option.  Use **Pinecone** when you need hassle‑free setup, auto‑scaling and multi‑cloud portability; choose AWS‑native stores for tighter integration, lower latency within AWS and potentially lower cost.
 
+### MongoDB Atlas (Vector Search)
+
+- **MongoDB Atlas Vector Search** – Managed vector search built into MongoDB Atlas.
+- Supports hybrid use cases: **document store + vector search** in one system.
+  
 ### Vector store selection summary
 
 - **OpenSearch** – Best general‑purpose engine for high‑performance RAG.
@@ -219,6 +224,7 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - **Aurora pgvector** – SQL + vectors for moderate datasets.
 - **ElastiCache / MemoryDB** – Ultra‑fast, in‑memory search.
 - **Pinecone** – Managed, serverless and auto‑scaling; good for ease of use and cross‑cloud portability.
+- **MongoDB Atlas** – Document DB + vector search in one platform.
 
 ## Orchestration & workflows
 
