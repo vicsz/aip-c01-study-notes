@@ -177,6 +177,19 @@ Choose the metric based on the task: translation → **BLEU**; summarisation →
 
 Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 
+## Glue vs Lake Formation
+
+- **AWS Glue Data Catalog**
+  - Metadata, discovery, lineage, table registration
+  - Answers: *“What data exists?”*, *“Where did it come from?”*
+- **AWS Lake Formation**
+  - Fine-grained data access enforcement (row/column-level)
+  - Answers: *“Who can query which columns/rows?”*
+
+**Rule of thumb**
+- *Knowing what data exists* → **Glue**
+- *Controlling who can access it* → **Lake Formation**
+
 ## AI data stores & vector databases
 
 ### OpenSearch
@@ -190,6 +203,23 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - **Neural plugin** – Built‑in embedding and search pipelines (simplifies RAG).
 
 *When to use:*  Choose **HNSW** for performance‑critical queries; choose **IVF** for extremely large datasets or when memory savings are important.
+
+#### OpenSearch Optimization (Vector & RAG workloads)
+
+- **Shard strategy**
+  - Prefer **fewer, larger shards** for vector-heavy semantic search
+  - Too many shards increase query fan-out and latency
+- **Hierarchical index design**
+  - Use a lightweight **router index** (e.g., product line, topic, tenant)
+  - Route queries to one or a few **detailed vector indices**
+  - Reduces search space and cost for ANN queries
+- **Index-level optimizations**
+  - Tune **HNSW parameters** (ef_search, ef_construction) for recall vs latency
+  - Separate **hot vs cold indices** when access patterns differ
+  - Use **metadata filters** to narrow candidate vectors before ANN
+- **Query patterns**
+  - Prefer **hybrid search** (keyword + vector) for better relevance
+  - Cache frequent queries upstream when possible
 
 ### S3 Vectors
 
@@ -242,6 +272,30 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - **Network isolation:**  Use **VPC endpoints/PrivateLink** to call Bedrock or SageMaker privately; configure security groups and subnets.
 - **Auditability:**  Log prompts, responses and tool invocations via **CloudWatch** and **AWS CloudTrail**.
 - **Guardrails & A2I:**  For high‑risk tasks, implement content filters and send outputs for **human review**.
+
+## System Resiliency Patterns (GenAI workloads)
+
+- **Chain-of-Thought instructions**
+  - Encourage structured reasoning for complex tasks
+  - Improves accuracy and consistency (use carefully; avoid exposing reasoning verbatim)
+- **Retry & failure handling**
+  - **Exponential Backoff** for transient model or service failures
+  - **Circuit Breaker pattern** to prevent cascading failures
+    - Common implementation: **Step Functions + DynamoDB**
+- Goal: **graceful degradation**, not hard failure, when models or downstream services misbehave
+
+## Humans in the Loop (HITL) & Quality Control
+
+- **Human Augmentation** → AI drafts, humans refine (review/edit before final output).
+- **Escalation Criteria** → Route uncertain cases (e.g., low confidence scores) to human experts.
+- **User feedback loop**
+  - Collect via **API Gateway**
+  - Store/index in **DynamoDB**
+  - Use to measure **model/variant preference** and drive continuous improvement
+- Common use cases:
+  - Regulated decisions
+  - Ambiguous classifications
+  - High-impact outputs where correctness > latency
 
 ## Designing RAG pipelines
 
