@@ -134,6 +134,23 @@ Choosing the right model and tuning its generation parameters are essential for 
 
 Choose the metric based on the task: translation → **BLEU**; summarisation → **ROUGE**; semantic quality → **BERTScore**.
 
+## Quality & Safety Gates in a Production GenAI Pipeline (Training vs Inference)
+
+| Layer question | Applies to | What it protects against | Typical problems | Common AWS tools |
+|---|---|---|---|---|
+| **Is the data structurally sane?** | **Training + Inference** | Garbage input | Empty records, missing fields, unsupported values, schema drift | AWS Glue Data Quality, AWS Glue ETL, AWS Glue Data Catalog |
+| **Is the data safe to use?** | **Training + Inference** | Sensitive or malformed input | PII, PHI, mixed languages, disfluent text | Amazon Comprehend (PII + language detection), AWS Lambda (normalization/masking), Amazon Transcribe (speaker labels, language ID) |
+| **Is the output safe to return?** | **Inference only** | Harmful or non-compliant output | Toxic content, policy violations, leakage | Amazon Bedrock Guardrails, Bedrock content filters |
+| **Is the output correct and useful?** | **Inference (primary)** | Wrong or low-quality answers | Hallucinations, irrelevance, inconsistency | Amazon Bedrock Knowledge Bases, Amazon OpenSearch (vector search), metadata filtering, prompt templates, temperature / top_p |
+
+## PII Detection on AWS — When to Use What
+
+| Service | Where it runs in the pipeline | Applies to | What it’s best at | Typical use cases | When it’s the WRONG choice |
+|---|---|---|---|---|---|
+| **Amazon Bedrock Guardrails** | At model invocation (input + output) | **Inference only** | Preventing PII from reaching or leaving the model | Redact/mask PII in prompts and responses; enforce privacy with minimal code; ensure PII is never returned | Cleaning historical data; batch processing S3 objects; non-GenAI workloads |
+| **Amazon Comprehend** | Before the model (data preprocessing) | **Training + Inference** | Detecting and transforming PII in raw text | Redact PII in transcripts or documents; normalize text before RAG; language detection + entity extraction | Real-time GenAI enforcement; output filtering; zero-code pipelines |
+| **Amazon Macie** | After storage (S3 scanning) | **Training data / at rest** | Discovering sensitive data at rest | Find where PII exists in S3; compliance audits; security posture visibility | Preventing storage of PII; redaction or transformation; inline application flows |
+
 ## Amazon SageMaker family
 
 - **Data Wrangler** – Visual data preparation.
@@ -211,15 +228,6 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - **EventBridge** – Bus for event‑driven architectures.
 - **AppConfig** – For runtime **feature flags** and dynamic model selection; can be used to switch FMs based on criteria.
 
-## Other AWS tips (common exam triggers)
-
-- **Outposts** – For running AWS services in your own data centre.
-- **Wavelength** – For running workloads at 5G edge locations.
-- **SQS** – **Decouple** microservices; appears in exam scenarios for buffering asynchronous tasks.
-- **Secrets Manager** – Manages secrets and rotates credentials (especially RDS and Aurora).
-- **Kinesis Data Streams** – Real‑time streaming; **Kinesis Firehose** is near‑real‑time.
-- **DataSync** – Accelerated data transfer between on‑prem and AWS or between regions.
-
 ## Security & governance patterns
 
 - **Threats:**  **Prompt injection**, **data exfiltration**, **tool misuse**.  Always sanitise user inputs, restrict tool access and implement guardrails.
@@ -244,6 +252,47 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - **Per‑tenant access control:**  Enforce IAM and RBAC at retrieval and tool layers.
 - **No cross‑tenant training:**  Do not mix tenant data in fine‑tuning unless explicit permission.
 - **Observability:**  Monitor usage and errors by tenant; alert on anomalies.
+
+## General Tips
+
+### Data, Governance, and Auditability
+- **Custom domain rule checking** → AWS Lambda  
+- **Auditable access** → CloudTrail + IAM (not custom application logs)  
+- **Tracking S3 data sources and lineage** → AWS Glue Data Catalog  
+- **Regulated industries** → Glue Data Catalog, CloudTrail, metadata tags, IAM-based access control  
+- **Data cleaning and PII masking before LLMs** → Lambda + Comprehend (**not Guardrails**)  
+
+### Networking and Security
+- **Secure private service access** → VPC endpoints / PrivateLink  
+- **On-prem execution** → AWS Outposts  
+- **5G / edge workloads** → AWS Wavelength  
+
+### RAG Quality, Explainability, and Caching
+- **RAG explainability** → propagate metadata into embeddings  
+- **Reduce hallucinations** → RetrieveAndGenerate with Bedrock Knowledge Bases  
+- **Retrieve-only RAG evaluation** → measure retrieval quality independent of generation  
+- **Hierarchical chunking** → small child chunks for search, return larger parent chunks for context  
+- Use hierarchical chunking when documents are **sectioned** and answers need surrounding context  
+
+### Performance and Cost Optimization
+- **Massive datasets + throttling + idle compute** → use Bedrock Batch Inference (not InvokeModel)  
+- **Static or repeated prompt content** → Bedrock prompt caching  
+- **Identical public requests** → CloudFront edge cache  
+- **Similar but not identical requests** → semantic cache  
+
+### Streaming and Real-Time Use Cases
+- **Real-time token streaming + serverless** → API Gateway WebSocket + Lambda  
+- **High-volume real-time ingestion** → Kinesis Data Streams  
+- **Near-real-time delivery** → Kinesis Firehose  
+
+### Agents and Tooling
+- **Agents should not speak REST**  
+- If agents call strict or mutable external APIs → place an **MCP tool boundary** in front  
+- Validate arguments **before** calling the external API  
+- **MCP standardizes interfaces, not compute** → deploy each MCP server on compute that matches workload  
+
+### Data Movement
+- **Large data transfers (on-prem ↔ AWS or AWS ↔ AWS)** → AWS DataSync  
 
 ## Exam‑specific advice & pitfalls
 
