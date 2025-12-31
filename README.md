@@ -397,6 +397,54 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - Need complex joins or relational filters → Aurora pgvector (not Knowledge Bases)
 - Need per-tenant isolation at index level → separate Knowledge Bases or vector stores
 
+## Chunking, embeddings, and vector stores
+
+### Core concepts (mental model)
+- **Underlying data source** – Original document (PDF, HTML, DOCX, Confluence page, etc.).
+- **Chunk** – Logical text segment extracted from the source and embedded.
+- **Vector** – Numerical embedding that represents a chunk in the vector store.
+- **Metadata** – Key–value attributes attached to a chunk/vector (e.g., tenant, source, product, section).
+- **Retrieved chunk** – Text returned at query time; may include **more surrounding context** than the exact vector span.
+
+### Chunking strategies (high-yield)
+- **Default chunking** – ~**300 tokens** with overlap; good general-purpose default.
+- **Overlap** – Repeats a portion of adjacent chunks to avoid cutting off meaning at boundaries.
+- **Semantic chunking** – Splits by meaning (sentences/sections) instead of fixed size; improves retrieval quality for structured text.
+- **Hierarchical chunking**
+  - Embed **small child chunks** for precise matching
+  - Return **larger parent chunks** at retrieval time for richer context
+  - Reduces total tokens sent to the FM while preserving local context
+- **When documents are well-structured** (headings/sections) → hierarchical or semantic chunking
+
+**Exam rule:**  
+- Poor answers ≠ bad model → often **bad chunking**
+
+### Chunking vs vector store behavior
+- Vector stores index **vectors**, not raw text.
+- Retrieval returns **associated text + metadata**, not just the vector span.
+- Metadata filtering reduces the candidate set **before ANN search**, improving relevance and performance.
+
+### Metadata in Bedrock Knowledge Bases
+- **metadata.json** – Optional file that accompanies documents in a Knowledge Base.
+- Used to attach **structured attributes** (tenant, product, region, doc type, ACL hints) to each chunk.
+- Enables:
+  - **Metadata-based filtering** during retrieval
+  - **Access control at retrieval time** (not IAM)
+  - **Explainability / traceability** (why this chunk was returned)
+- Metadata is stored **with embeddings** and travels through retrieval.
+
+**Exam gotchas:**
+- Metadata is **optional**, but required for filtering and multi-tenant RAG.
+- Metadata filtering ≠ Guardrails and ≠ IAM.
+- IAM controls access to the KB; metadata controls **what gets retrieved**.
+
+### Chunking & RAG rules of thumb
+- Large documents, generic answers → increase chunk size
+- Precise questions, factual lookup → smaller chunks + overlap
+- Need surrounding context → hierarchical chunking
+- Multi-tenant or scoped retrieval → metadata.json
+- Hallucinations with “correct” retrieval → chunking strategy issue, not model choice
+
 ## Orchestration & workflows
 
 - **AWS Step Functions** – Orchestrates stateful workflows.  Often used to chain data ingestion, embedding, calling FMs, and storing outputs.
