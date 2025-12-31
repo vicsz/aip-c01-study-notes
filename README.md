@@ -78,10 +78,29 @@ Bedrock is AWS’s managed platform for **foundation models** and GenAI tools.
 - **Batch Inference** – Submit multiple prompts via S3 and retrieve outputs asynchronously.
 - **Cross‑Region Inference** – Distribute inference across multiple regions.
 - **Intelligent Prompt Routing** – Routes requests to different models based on complexity to optimise cost and performance.
-- **CountTokens API** – Returns token count for a prompt without performing inference; used for budgeting.
-- **RetrieveAndGenerate API** – **Built-in RAG API** that performs retrieval + generation in one call; **grounds responses in retrieved documents to reduce hallucinations** (exam hint: choose this when you want managed RAG without custom orchestration).
+orchestration).
 - **Model/Agent Evaluations** – Evaluate model quality using metrics or custom datasets.
 - **Bedrock Flows** – Visual pipeline orchestration connecting FMs with data sources/tools.
+
+### Amazon Bedrock API calls (exam-relevant)
+
+- **InvokeModel** – Core synchronous inference API; use for standard, low-latency requests.
+- **InvokeModelWithResponseStream** – Streaming inference; use for **real-time token streaming** (chat/UX scenarios).
+- **StartBatchInferenceJob** – Asynchronous, large-scale inference from S3; use when you see **millions of records**, throttling, or idle compute.
+- **RetrieveAndGenerate** – Managed **RAG API** that performs retrieval + generation in one call; **grounds responses in documents to reduce hallucinations** (preferred when custom RAG orchestration isn’t required).
+- **Retrieve** – Retrieval-only operation; use when evaluating or debugging **retrieval quality independently** of generation.
+- **CreateKnowledgeBase / UpdateKnowledgeBase** – Manage Bedrock Knowledge Bases (data sources, vector stores).
+- **CountTokens** – Returns token count without running inference; used for **cost estimation and budgeting**.
+- **CreateGuardrail / ApplyGuardrail** – Define and enforce **policy-based safety controls** on inputs/outputs.
+- **CreateModelEvaluationJob** – Run automated evaluations against datasets for **model comparison and regression testing**.
+- **PutModelInvocationLoggingConfiguration** – Enable prompt/response logging for **auditability and debugging**.
+- **ListFoundationModels / GetFoundationModel** – Discover available models and their capabilities (text, embeddings, multimodal).
+
+**Exam heuristics:**  
+- **Interactive UX** → InvokeModelWithResponseStream  
+- **High-volume/offline** → StartBatchInferenceJob  
+- **Hallucination reduction, no custom RAG** → RetrieveAndGenerate  
+- **Cost estimation** → CountTokens  
 
 ### Bedrock Guardrails & safety
 
