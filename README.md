@@ -82,6 +82,9 @@ orchestration).
 - **Model/Agent Evaluations** – Evaluate model quality using metrics or custom datasets.
 - **Bedrock Flows** – Visual pipeline orchestration connecting FMs with data sources/tools.
 
+**Rules of Thumb**  
+- **Multi-Region Failover** → Bedrock cross-Region inference (not traditional Route-53 approach)  
+
 ### Amazon Bedrock API calls
 
 - **InvokeModel** – Core synchronous inference API; use for standard, low-latency requests.
