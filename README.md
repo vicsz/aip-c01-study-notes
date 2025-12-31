@@ -42,12 +42,12 @@
 
 ### Language & text
 
-- **Amazon Comprehend** – Natural language processing: **sentiment**, **entity/key‑phrase extraction**, **topic modelling** and **custom entities**; includes **Comprehend Medical** for clinical texts.
+- **Amazon Comprehend** – Natural language processing: **sentiment**, **entity/key‑phrase extraction**, **topic modelling** and **custom entities**; includes **Comprehend Medical** for clinical texts. **Custom Classification** oragnized documents into user-defined categories.
 - **Amazon Kendra** – Enterprise document search with connectors; can be used as a retrieval layer in RAG architectures.
 - **Amazon Lex** – Conversational interface (chatbot) service.
 - **Amazon Q** – Generative AI assistant: **Q Business** (with **data connectors**, **plugins**, **Q Apps**) and **Q Developer** for code assistance.
 - **Amazon Textract** – OCR plus extraction of structured data from documents.
-- **Amazon Transcribe** – Speech‑to‑text with **custom vocabularies** and **custom language models**.
+- **Amazon Transcribe** – Speech‑to‑text. Can be improved with **custom vocabularies** (domain-specific words) and **custom language models** (domain specific context). 
 
 ### Vision & multimodal
 
