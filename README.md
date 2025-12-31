@@ -79,6 +79,7 @@ Bedrock is AWS’s managed platform for **foundation models** and GenAI tools.
 - **Cross‑Region Inference** – Distribute inference across multiple regions.
 - **Intelligent Prompt Routing** – Routes requests to different models based on complexity to optimise cost and performance.
 - **CountTokens API** – Returns token count for a prompt without performing inference; used for budgeting.
+- **RetrieveAndGenerate API** – **Built-in RAG API** that performs retrieval + generation in one call; **grounds responses in retrieved documents to reduce hallucinations** (exam hint: choose this when you want managed RAG without custom orchestration).
 - **Model/Agent Evaluations** – Evaluate model quality using metrics or custom datasets.
 - **Bedrock Flows** – Visual pipeline orchestration connecting FMs with data sources/tools.
 
