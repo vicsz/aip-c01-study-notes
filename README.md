@@ -188,6 +188,12 @@ Choosing the right model and tuning its generation parameters are essential for 
 | **Amazon Comprehend** | Before the model (data preprocessing) | **Training + Inference** | Detecting and transforming PII in raw text | Redact PII in transcripts or documents; normalize text before RAG; language detection + entity extraction | Real-time GenAI enforcement; output filtering; zero-code pipelines |
 | **Amazon Macie** | After storage (S3 scanning) | **Training data / at rest** | Discovering sensitive data at rest | Find where PII exists in S3; compliance audits; security posture visibility | Preventing storage of PII; redaction or transformation; inline application flows |
 
+**Rules of Thumb**
+- Guardrails alone ≠ jailbreak defense → Add pre-model classifiers
+- Detect jailbreak intent, not just keywords → Bedrock safety-classifier
+- Block before the model sees the prompt → Lambda pre-processor
+- Defense-in-depth for GenAI → Pre-filter + Guardrails + Monitoring
+
 ## Amazon SageMaker family
 
 - **Data Wrangler** – Visual data preparation.
