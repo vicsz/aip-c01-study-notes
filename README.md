@@ -198,6 +198,7 @@ Choosing the right model and tuning its generation parameters are essential for 
 - Defense-in-depth for GenAI → Pre-filter + Guardrails + Monitoring
 - Schema validation + completeness checks → AWS Glue Data Quality
 - Dataset-level validation (not per-record logic) → AWS Glue ETL + Data Quality rules
+- Minimize Code Changes → Likley NOT Lamnda but Guardrails instead
 
 ## Amazon SageMaker family
 
