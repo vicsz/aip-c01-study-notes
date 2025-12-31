@@ -83,7 +83,8 @@ orchestration).
 - **Bedrock Flows** – Visual pipeline orchestration connecting FMs with data sources/tools.
 
 **Rules of Thumb**  
-- **Multi-Region Failover** → Bedrock cross-Region inference (not traditional Route-53 approach)  
+- **Multi-Region Failover** → Bedrock cross-Region inference (not traditional Route-53 approach)
+- **Dynamic model selection by request complexity** → **Intelligent Prompt Routing**
 
 ### Amazon Bedrock API calls
 
