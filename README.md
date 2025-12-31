@@ -178,7 +178,7 @@ Choosing the right model family is primarily about **modality**, **output type**
 
 **Exam note:** Perplexity does **not** measure hallucinations or grounding; use task-specific metrics or human review for GenAI apps.
 
-## ReAct vs Agents vs Flows (Exam Comparison)
+## ReAct vs Agents vs Flows
 | Aspect | **ReAct (Step Functions)** | **Bedrock Agents** | **Bedrock Flows** |
 |---|---|---|---|
 | What it is | Explicit state-machine reasoning | Model-driven tool use | Visual orchestration |
@@ -231,7 +231,7 @@ Choosing the right model family is primarily about **modality**, **output type**
 - **Have ground-truth answers and ideal contexts** → **Provide reference answers + reference contexts in S3**
 - **Minimize custom evaluation infrastructure** → **Use Bedrock evaluation jobs**
 
-### What NOT to use (exam eliminators)
+### What NOT to use
 - **Latency, token count, error rate ≠ model quality** → **Do not use CloudWatch for evaluation**
 - **User feedback ≠ ground truth** → **Not sufficient for model comparison**
 - **Manual review ≠ scalable evaluation** → **Fails automation requirement**
@@ -301,7 +301,7 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - *Knowing what data exists* → **Glue**
 - *Controlling who can access it* → **Lake Formation**
 
-## Model Context Protocol (MCP) — exam essentials
+## Model Context Protocol (MCP)
 - **MCP** – Standardized protocol that lets LLM agents call external tools safely and consistently.
 - **Purpose** – Decouples agent reasoning from tool implementation; agents speak **tools**, not REST.
 - **What MCP standardizes** – Tool schemas, inputs, outputs, and invocation semantics (not compute).
