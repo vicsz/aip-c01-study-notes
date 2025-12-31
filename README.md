@@ -14,29 +14,29 @@
 - **Cost, performance & monitoring.**  Understand pricing for **Bedrock vs. SageMaker**, when to use **serverless vs. provisioned endpoints**, and how to monitor token usage, latency and model drift.
 - **Decision‑point trade‑offs.**  Know when to **fine‑tune** vs. use **RAG**, when to choose **Bedrock** vs. **SageMaker**, and when to favour **HNSW** vs. **IVF** vector indices.
 
-## General AI concepts (core definitions)
+## General AI concepts
 
-- **Foundation Model (FM)** – Large pre-trained model trained on broad data, used as the base for downstream tasks.
-- **Fine-Tuning** – Updating **model weights** using **labelled task-specific data** to specialize behavior.
-- **Continued Pre-Training (CPT)** – Extending a model with **unlabelled domain data** to adapt knowledge without supervision.
-- **Low-Rank Adaptation (LoRA)** – Parameter-efficient tuning that adds small trainable matrices while keeping base weights frozen.
-- **Retrieval-Augmented Generation (RAG)** – Combines **retrieval (vector search)** with generation to ground responses in external data.
-- **Embeddings** – Dense **vector representations** used for semantic similarity, clustering, and retrieval.
-- **Inference** – Running a trained model to generate outputs from inputs.
-- **Prompt** – Structured input that guides a model’s behavior, constraints, and output format.
-- **Prompt Template** – Parameterized prompt with placeholders to ensure consistent, repeatable requests.
-- **Context Window** – Maximum number of tokens a model can process at once (input + context + output).
-- **Tokens** – Atomic units of text processed by models; cost, latency, and limits scale with token count.
-- **Temperature** – Controls randomness in generation; lower is more deterministic, higher is more creative.
-- **Top_p (Nucleus Sampling)** – Restricts token selection to the smallest probability mass ≥ *p*, shaping diversity differently than temperature.
-- **Hallucination** – Fluent but **factually incorrect or unsupported** model output.
-- **Grounding** – Constraining responses to retrieved or provided documents to reduce hallucinations.
-- **Guardrails** – Safety and policy controls applied at model invocation to filter unsafe inputs or outputs.
-- **Human-in-the-Loop (HITL)** – Workflow where humans review, correct, or approve model outputs.
-- **Batch Inference** – Asynchronous, high-throughput processing optimized for cost over latency.
-- **Multi-modal Model** – Model capable of processing or generating multiple data types (e.g., text + images).
-- **Vector Store** – Database optimized for storing and searching embeddings via similarity search.
-- **Semantic Search** – Retrieval based on meaning rather than exact keyword matching.
+- **Foundation Model (FM)** – Large pre-trained model provided by AWS or partners, designed to be adapted for multiple downstream use cases.
+- **Fine-Tuning** – Customizing a foundation model by **updating model weights** using **labelled, task-specific training data**.
+- **Continued Pre-Training (CPT)** – Adapting a foundation model using **unlabelled domain-specific data** to extend knowledge without explicit labels.
+- **Low-Rank Adaptation (LoRA)** – Parameter-efficient fine-tuning technique that adds trainable low-rank layers while keeping the base model frozen.
+- **Retrieval-Augmented Generation (RAG)** – Architecture pattern that **retrieves relevant data at inference time** and injects it into the prompt to ground model responses.
+- **Embeddings** – Numerical vector representations of data that capture semantic meaning for **similarity search and retrieval**.
+- **Inference** – The process of invoking a trained model to generate predictions or outputs.
+- **Prompt** – Input text and instructions provided to a foundation model to influence its response.
+- **Prompt Template** – Reusable prompt structure with placeholders that standardizes inputs across requests.
+- **Context Window** – Maximum number of tokens a model can process in a single request, including input, retrieved context, and output.
+- **Tokens** – Units of text processed by a model; **cost, latency, and limits scale with token usage**.
+- **Temperature** – Sampling parameter that controls response randomness; lower values produce more deterministic outputs.
+- **Top_p (Nucleus Sampling)** – Sampling parameter that limits token selection to the smallest set of tokens whose cumulative probability exceeds a threshold.
+- **Hallucination** – Model output that appears coherent but is **not supported by training data or provided context**.
+- **Grounding** – Technique that constrains model responses to **retrieved or supplied data sources** to reduce hallucinations.
+- **Guardrails** – Policy-based controls applied during model invocation to enforce **safety, compliance, and content constraints**.
+- **Human-in-the-Loop (HITL)** – Design pattern where human reviewers validate or correct model outputs for quality or compliance.
+- **Batch Inference** – Asynchronous processing of large volumes of requests optimized for throughput and cost efficiency.
+- **Multi-modal Model** – Foundation model capable of processing or generating multiple data modalities (e.g., text and images).
+- **Vector Store** – Storage system optimized for managing and querying embeddings using similarity search algorithms.
+- **Semantic Search** – Retrieval technique that returns results based on semantic similarity rather than exact keyword matching.
 
 ## AWS AI & ML services (alphabetical)
 
