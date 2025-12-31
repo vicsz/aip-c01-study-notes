@@ -83,13 +83,14 @@ orchestration).
 - **Bedrock Flows** – Visual pipeline orchestration connecting FMs with data sources/tools.
 
 **Rules of Thumb**  
-- **Multi-Region Failover** → Bedrock cross-Region inference (not traditional Route-53 approach)
-- **Dynamic model selection by request complexity** → **Intelligent Prompt Routing**
+- Multi-Region Failover → Bedrock cross-Region inference (not traditional Route-53 approach)
+- Dynamic model selection by request complexity → Intelligent Prompt Routing
 - Scanned or image-based documents processing → Bedrock Data Automation
 - Avoid custom OCR / parsing → BDA blueprints
 - Multimodal ingestion before RAG → BDA → Knowledge Base
 - Confluence / SaaS docs as source → Bedrock Knowledge Base managed connector
 - Automatic re-sync on updates → Knowledge Base ingestion jobs
+- Large volumes of prompts or documents → Bedrock Batch Inference (optimize cost and throughput by processing requests in bulk instead of per-request inference)
 
 ### Amazon Bedrock API calls
 
