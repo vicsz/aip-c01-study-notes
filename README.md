@@ -328,7 +328,9 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - **Auditable access** → CloudTrail + IAM (not custom application logs)  
 - **Tracking S3 data sources and lineage** → AWS Glue Data Catalog  
 - **Regulated industries** → Glue Data Catalog, CloudTrail, metadata tags, IAM-based access control  
-- **Data cleaning and PII masking before LLMs** → Lambda + Comprehend (**not Guardrails**)  
+- **Data cleaning, PII masking, intent classification before LLMs** → **AWS Lambda + Amazon Comprehend** (**not Guardrails, not Macie**)
+  - **Exam gotcha:** PII questions often point to **Macie**, but Macie is for **data at rest (S3)**, not real-time inference pipelines.
+- **Rule:** **Before the model** → Lambda + Comprehend (PII + intent) | **At invocation** → Guardrails | **At rest** → Macie
 
 ### Networking and Security
 - **Secure private service access** → VPC endpoints / PrivateLink  
