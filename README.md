@@ -132,15 +132,20 @@ Choosing the right model and tuning its generation parameters are essential for 
 - For RAG, you typically use an **embedding model** to encode documents and a **text generation model** to compose answers.
 - For image‑aware tasks, choose a **multi‑modal model** that can process images.  Multi‑modal models are often more expensive and may have longer inference latency.
 
-## Evaluating model outputs
+## Evaluating model outputs (AWS exam-aligned)
 
-| Metric | Purpose | Use case |
-| --- | --- | --- |
-| **BLEU** | N‑gram precision metric | Machine translation |
-| **ROUGE** | Recall‑focused overlap | Text summarisation |
-| **BERTScore** | Embedding‑based semantic similarity | Evaluating meaning/quality of generated text |
+- **Perplexity** – Measures how well a model predicts the next token; use for **training or fine-tuning evaluation**, not output correctness.
+- **BLEU** – N-gram precision metric; use for **machine translation** against reference text.
+- **ROUGE** – Recall-focused overlap metric; use for **summarization** quality.
+- **BERTScore** – Embedding-based semantic similarity; use for **meaning preservation** in free-form text.
 
-Choose the metric based on the task: translation → **BLEU**; summarisation → **ROUGE**; semantic quality → **BERTScore**.
+**Rule of thumb:**  
+- **Model training quality** → Perplexity  
+- **Translation** → BLEU  
+- **Summarization** → ROUGE  
+- **Semantic / open-ended text quality** → BERTScore  
+
+**Exam note:** Perplexity does **not** measure hallucinations or grounding; use task-specific metrics or human review for GenAI apps.
 
 ## Quality & Safety Gates in a Production GenAI Pipeline (Training vs Inference)
 
