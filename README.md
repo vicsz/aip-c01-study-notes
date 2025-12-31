@@ -16,14 +16,27 @@
 
 ## General AI concepts (core definitions)
 
-| Term | Meaning |
-| --- | --- |
-| **Foundation Model (FM)** | Large model pre‑trained on vast data; used as a base for downstream tasks. |
-| **Fine‑Tuning** | Updating **model weights** using **labelled task‑specific data** to specialise behaviour. |
-| **Continued Pre‑Training (CPT)** | Extending a model’s knowledge with **unlabelled domain data**, similar to fine‑tuning but unsupervised. |
-| **Low‑Rank Adaptation (LoRA)** | Efficient tuning method adding small trainable matrices to a frozen model; the base weights remain unchanged. |
-| **Retrieval‑Augmented Generation (RAG)** | Combining **information retrieval** (e.g., vector search) with generation to ground responses in external data. |
-| **Embeddings** | Dense **vector representations** of data used for semantic similarity and vector search. |
+- **Foundation Model (FM)** – Large pre-trained model trained on broad data, used as the base for downstream tasks.
+- **Fine-Tuning** – Updating **model weights** using **labelled task-specific data** to specialize behavior.
+- **Continued Pre-Training (CPT)** – Extending a model with **unlabelled domain data** to adapt knowledge without supervision.
+- **Low-Rank Adaptation (LoRA)** – Parameter-efficient tuning that adds small trainable matrices while keeping base weights frozen.
+- **Retrieval-Augmented Generation (RAG)** – Combines **retrieval (vector search)** with generation to ground responses in external data.
+- **Embeddings** – Dense **vector representations** used for semantic similarity, clustering, and retrieval.
+- **Inference** – Running a trained model to generate outputs from inputs.
+- **Prompt** – Structured input that guides a model’s behavior, constraints, and output format.
+- **Prompt Template** – Parameterized prompt with placeholders to ensure consistent, repeatable requests.
+- **Context Window** – Maximum number of tokens a model can process at once (input + context + output).
+- **Tokens** – Atomic units of text processed by models; cost, latency, and limits scale with token count.
+- **Temperature** – Controls randomness in generation; lower is more deterministic, higher is more creative.
+- **Top_p (Nucleus Sampling)** – Restricts token selection to the smallest probability mass ≥ *p*, shaping diversity differently than temperature.
+- **Hallucination** – Fluent but **factually incorrect or unsupported** model output.
+- **Grounding** – Constraining responses to retrieved or provided documents to reduce hallucinations.
+- **Guardrails** – Safety and policy controls applied at model invocation to filter unsafe inputs or outputs.
+- **Human-in-the-Loop (HITL)** – Workflow where humans review, correct, or approve model outputs.
+- **Batch Inference** – Asynchronous, high-throughput processing optimized for cost over latency.
+- **Multi-modal Model** – Model capable of processing or generating multiple data types (e.g., text + images).
+- **Vector Store** – Database optimized for storing and searching embeddings via similarity search.
+- **Semantic Search** – Retrieval based on meaning rather than exact keyword matching.
 
 ## AWS AI & ML services (alphabetical)
 
@@ -118,11 +131,6 @@ Choosing the right model and tuning its generation parameters are essential for 
 - Consider **context window size**, **token limits**, **supported modalities**, **cost** and **performance**.
 - For RAG, you typically use an **embedding model** to encode documents and a **text generation model** to compose answers.
 - For image‑aware tasks, choose a **multi‑modal model** that can process images.  Multi‑modal models are often more expensive and may have longer inference latency.
-
-### Temperature vs. top_p (nucleus sampling)
-
-- **Temperature** controls the randomness of token sampling.  A value of **0** forces deterministic outputs (always picks the highest‑probability next token).  Higher values introduce more randomness, leading to more creative or diverse responses.  In practice, temperatures between **0.2** and **0.8** are common; you should lower the temperature for factual tasks and raise it for creative tasks.
-- **Top p** (nucleus sampling) sets a cumulative probability threshold.  Instead of sampling from the entire vocabulary, the model considers only the smallest set of tokens whose total probability mass is **p** (e.g. 0.9).  Lower **top p** values restrict the sampling to more probable tokens and reduce randomness; higher values allow more diverse candidates.  Using **top p** in combination with temperature allows finer control over creativity: temperature affects how likely low‑probability tokens are chosen; top p limits which tokens are even considered.
 
 ## Evaluating model outputs
 
