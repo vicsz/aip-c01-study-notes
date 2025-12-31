@@ -90,7 +90,7 @@ orchestration).
 - Multimodal ingestion before RAG → BDA → Knowledge Base
 - Confluence / SaaS docs as source → Bedrock Knowledge Base managed connector
 - Automatic re-sync on updates → Knowledge Base ingestion jobs
-- Large volumes of prompts or documents → Bedrock Batch Inference (optimize cost and throughput by processing requests in bulk instead of per-request inference)
+- Large volumes of prompts or documents or embedding to do  → Bedrock Batch Inference (optimize cost and throughput by processing requests in bulk instead of per-request inference)
 
 ### Amazon Bedrock API calls
 
