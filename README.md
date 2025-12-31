@@ -147,24 +147,24 @@ orchestration).
 - **AWS Agent Squad** – Managed multi‑agent orchestration for production workloads with governance and scaling.  Integrates tightly with Bedrock and AgentCore.  Use when you need secure, auditable, production‑scale agent workflows.
 
 ## Model selection & generation parameters
-
-Choosing the right model and tuning its generation parameters are essential for high‑quality outputs and cost control.
+Choosing the right model family is primarily about **modality**, **output type**, and **operational simplicity**.
 
 ### Model types
-
-- **Text (regular) models** – Foundation models that take text as input and output text.  Use for tasks like conversation, summarisation, code generation and language translation.
-- **Embedding models** – Produce numerical vector representations (embeddings) rather than human‑readable text.  Use when you need to store text in a vector store for semantic search or to build RAG systems.
-- **Multi‑modal models** – Accept and/or generate multiple modalities (e.g. text + images).  Use for tasks like image captioning, visual question answering or cross‑modal retrieval.  Bedrock currently provides select multi‑modal models; the exam may test understanding of when to select them.
+- **Text (generation) models** – Text in → text out; use for chat, summarization, reasoning, and code.
+  - Examples: Amazon Titan Text, Anthropic Claude
+- **Embedding models** – Input → vector embeddings; use for semantic search, RAG, clustering.
+  - Examples: Amazon Titan Embeddings (text-only), Titan Multimodal Embeddings
+- **Multi-modal models** – Handle multiple modalities (text + images); use for cross-modal understanding.
+  - Examples: Titan Multimodal Embeddings, multimodal Claude variants (vision-capable)
 
 ### Choosing a model
-
-- Identify the **task** (e.g. chat, summarisation, code completion, multi‑modal understanding) and select a model family designed for that task.
-- Consider **context window size**, **token limits**, **supported modalities**, **cost** and **performance**.
-- For RAG, you typically use an **embedding model** to encode documents and a **text generation model** to compose answers.
-- For image‑aware tasks, choose a **multi‑modal model** that can process images.  Multi‑modal models are often more expensive and may have longer inference latency.
+- **Pure text generation** → Text model (e.g., Claude, Titan Text)
+- **RAG / semantic search** → Embedding model + separate text generation model
+- **Images + text, single vector space required** → **Multimodal embedding model**
+- **Explain images in natural language** → Multimodal text model (vision-capable Claude)
+- **Minimize system complexity** → Prefer a **single model** that satisfies all modalities
 
 ## Evaluating model outputs (AWS exam-aligned)
-
 - **Perplexity** – Measures how well a model predicts the next token; use for **training or fine-tuning evaluation**, not output correctness.
 - **BLEU** – N-gram precision metric; use for **machine translation** against reference text.
 - **ROUGE** – Recall-focused overlap metric; use for **summarization** quality.
