@@ -200,6 +200,47 @@ Choosing the right model and tuning its generation parameters are essential for 
 - Dataset-level validation (not per-record logic) → AWS Glue ETL + Data Quality rules
 - Minimize Code Changes → Likley NOT Lamnda but Guardrails instead
 
+## Rules of Thumb — Model & RAG Evaluation (Amazon Bedrock)
+
+### Core evaluation selection
+- **Compare multiple FMs on the same task** → **Bedrock Model Evaluations**
+- **Evaluate RAG end-to-end (retrieval + answer quality)** → **RAG evaluation (retrieve-and-generate)**
+- **Evaluate retrieval quality only** → **RAG evaluation (retrieve-only)**
+- **Measure correctness, completeness, faithfulness** → **Bedrock evaluation jobs (LLM-as-judge)**
+- **Have ground-truth answers and ideal contexts** → **Provide reference answers + reference contexts in S3**
+- **Minimize custom evaluation infrastructure** → **Use Bedrock evaluation jobs**
+
+### What NOT to use (exam eliminators)
+- **Latency, token count, error rate ≠ model quality** → **Do not use CloudWatch for evaluation**
+- **User feedback ≠ ground truth** → **Not sufficient for model comparison**
+- **Manual review ≠ scalable evaluation** → **Fails automation requirement**
+- **Operational monitoring ≠ evaluation** → **CloudWatch is for ops, not quality**
+
+### RAG-specific rules
+- **Unsure whether errors come from retrieval or generation** → **Run retrieve-only evaluation first**
+- **“Is the model using the right documents?”** → **Retrieve-only RAG evaluation**
+- **“Is the final answer correct and grounded?”** → **Retrieve-and-generate RAG evaluation**
+- **Need citation coverage metrics** → **RAG evaluation with reference contexts**
+- **Tuning chunking, filters, or index settings** → **Retrieve-only evaluation before prompt/model changes**
+
+### Dataset & workflow clues
+- **Prompt dataset already in S3** → **Bedrock evaluation jobs**
+- **Pre-production model bake-off** → **Model Evaluations**
+- **Repeatable, automated scoring required** → **Evaluation jobs, not ad-hoc scripts**
+- **LLM-as-judge explicitly mentioned** → **Bedrock evaluation (by definition)**
+
+### Fast mental mapping
+- **Ops health** → **CloudWatch**
+- **Safety enforcement** → **Guardrails**
+- **Retrieval quality** → **RAG eval (retrieve-only)**
+- **Answer quality** → **RAG eval (retrieve-and-generate)**
+- **Model comparison** → **Model Evaluations**
+
+### Memory hooks
+- **Quality ≠ latency** → **Use evaluation jobs**
+- **CloudWatch tells you how fast; Bedrock eval tells you how right**
+- **RAG problems need RAG evaluation modes**
+
 ## Amazon SageMaker family
 
 - **Data Wrangler** – Visual data preparation.
