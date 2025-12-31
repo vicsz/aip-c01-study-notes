@@ -301,6 +301,19 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - *Knowing what data exists* → **Glue**
 - *Controlling who can access it* → **Lake Formation**
 
+## Model Context Protocol (MCP) — exam essentials
+- **MCP** – Standardized protocol that lets LLM agents call external tools safely and consistently.
+- **Purpose** – Decouples agent reasoning from tool implementation; agents speak **tools**, not REST.
+- **What MCP standardizes** – Tool schemas, inputs, outputs, and invocation semantics (not compute).
+- **Security & safety** – Enables strict argument validation, input constraints, and safer tool execution.
+- **Deployment model** – Each MCP server is deployed independently on compute that matches the tool’s workload.
+
+**Design rules (exam-relevant):**
+- Use **one MCP server per tool or closely related toolset** for clear boundaries and blast-radius control.
+- Put an **MCP boundary in front of external or fragile APIs** (rate limits, strict schemas, side effects).
+- Avoid letting agents directly call raw REST APIs.
+- MCP is about **interface consistency**, not orchestration (that’s Agents / Step Functions).
+
 ## AI data stores & vector databases
 
 ### OpenSearch
