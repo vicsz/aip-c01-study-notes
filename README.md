@@ -388,14 +388,3 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 
 ### Data Movement
 - **Large data transfers (on-prem ↔ AWS or AWS ↔ AWS)** → AWS DataSync  
-
-## Exam‑specific advice & pitfalls
-
-- **Hands‑on is invaluable.**  Deploy sample Bedrock models, perform embeddings and RAG, configure Step Functions and Lambda; the exam expects practical understanding.
-- **Review core AWS services.**  Do not neglect **API Gateway**, **S3**, **Step Functions**, **Lambda**, **IAM** and **KMS**; they appear in many questions.
-- **Expect long scenario questions.**  Many questions have long preambles; read the final requirement first to focus on relevant details.  Some early test‑takers noted grammar issues and ambiguous answers – choose the most secure and cost‑effective option.
-- **Be ready for trade‑off questions.**  For example: fine‑tune vs. RAG; Bedrock vs. SageMaker; serverless vs. always‑on; HNSW vs. IVF.
-- **Security & governance matter.**  Evaluate whether the solution uses **least‑privilege IAM**, **encryption**, **data privacy controls**, and **guardrails**.
-- **Cost and performance.**  Understand pricing models for Bedrock (pay per inference), SageMaker (instance‑based), Step Functions, etc.  Consider caching and batching to reduce cost.
-- **Time management.**  There are roughly 75–85 questions in about 3–3.5 hours; practise pacing and mark tricky questions to revisit later.
-- **Treat it as an architecture exam.**  Build mental patterns for end‑to‑end GenAI systems on AWS; rely on well‑architected principles.
