@@ -314,6 +314,20 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
   - Prefer **hybrid search** (keyword + vector) for better relevance
   - Cache frequent queries upstream when possible
 
+#### OpenSearch Neural Plugin 
+- Use when you want OpenSearch to accept **raw text queries** and generate embeddings internally (no client-side embedding code).
+- Pick when you want **OpenSearch ingest/search pipelines** to call **Bedrock embedding models directly** via a connector.
+- Good fit when you already operate OpenSearch and want **DIY RAG** without Bedrock Knowledge Bases.
+- Use for **custom indexing logic** or **hybrid search** (keyword + vector) tightly coupled to OpenSearch.
+- Prefer over Knowledge Bases when you need **full control over indices, shard strategy, and query DSL**.
+- Avoid when you want **minimal ops / managed RAG** → use Bedrock Knowledge Bases instead.
+- Avoid if embeddings are generated elsewhere and stored directly → Neural plugin adds no value.
+
+##### Rules of thumb
+- Managed RAG, minimal plumbing → Bedrock Knowledge Bases  
+- OpenSearch-centric RAG with text-in / vector-out handled by OpenSearch → Neural Plugin  
+- Client controls embeddings explicitly → No Neural Plugin
+
 ### S3 Vectors
 
 - Lowest‑cost vector store; managed via S3.  Suitable for large, cold datasets.  AWS often recommends combining **S3 Vectors** for bulk storage with **OpenSearch** for hot, low‑latency queries.
