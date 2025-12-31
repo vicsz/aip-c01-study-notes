@@ -193,6 +193,8 @@ Choosing the right model and tuning its generation parameters are essential for 
 - Detect jailbreak intent, not just keywords → Bedrock safety-classifier
 - Block before the model sees the prompt → Lambda pre-processor
 - Defense-in-depth for GenAI → Pre-filter + Guardrails + Monitoring
+- Schema validation + completeness checks → AWS Glue Data Quality
+- Dataset-level validation (not per-record logic) → AWS Glue ETL + Data Quality rules
 
 ## Amazon SageMaker family
 
