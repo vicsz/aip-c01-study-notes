@@ -38,7 +38,7 @@
 - **Vector Store** – Storage system optimized for managing and querying embeddings using similarity search algorithms.
 - **Semantic Search** – Retrieval technique that returns results based on semantic similarity rather than exact keyword matching.
 
-## AWS AI & ML services (alphabetical)
+## AWS AI & ML services
 
 ### Language & text
 
@@ -82,7 +82,7 @@ orchestration).
 - **Model/Agent Evaluations** – Evaluate model quality using metrics or custom datasets.
 - **Bedrock Flows** – Visual pipeline orchestration connecting FMs with data sources/tools.
 
-### Amazon Bedrock API calls (exam-relevant)
+### Amazon Bedrock API calls
 
 - **InvokeModel** – Core synchronous inference API; use for standard, low-latency requests.
 - **InvokeModelWithResponseStream** – Streaming inference; use for **real-time token streaming** (chat/UX scenarios).
