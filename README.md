@@ -357,6 +357,14 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - Avoid cluster management → OpenSearch Serverless
 - DIY pgvector → Only if you need SQL semantics outside RAG
 
+#### Metadata & filtering:
+- Simple metadata filtering → metadata.json in Knowledge Base
+- Per-document attributes (tenant, product, region) → metadata.json
+- RAG explainability / traceability → propagate metadata into embeddings
+- Access control via retrieval filters → metadata-based filtering (not IAM)
+- Need complex joins or relational filters → Aurora pgvector (not Knowledge Bases)
+- Need per-tenant isolation at index level → separate Knowledge Bases or vector stores
+
 ## Orchestration & workflows
 
 - **AWS Step Functions** – Orchestrates stateful workflows.  Often used to chain data ingestion, embedding, calling FMs, and storing outputs.
