@@ -291,13 +291,21 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - Supports hybrid use cases: **document store + vector search** in one system.
   
 ### Vector store selection summary
-
 - **OpenSearch** – Best general‑purpose engine for high‑performance RAG.
 - **S3 Vectors** – Cheapest storage for large collections.
 - **Aurora pgvector** – SQL + vectors for moderate datasets.
 - **ElastiCache / MemoryDB** – Ultra‑fast, in‑memory search.
 - **Pinecone** – Managed, serverless and auto‑scaling; good for ease of use and cross‑cloud portability.
 - **MongoDB Atlas** – Document DB + vector search in one platform.
+
+### Rules of Thumb
+- Default RAG on AWS → Bedrock Knowledge Bases
+- Documents already in S3 → S3-backed Knowledge Base
+- Minimal ops / no ingestion code → Knowledge Base + StartIngestionJob
+- Need metadata filtering → metadata.json with Knowledge Base
+- Automatic index sync on S3 changes → S3 event → StartIngestionJob
+- Avoid cluster management → OpenSearch Serverless
+- DIY pgvector → Only if you need SQL semantics outside RAG
 
 ## Orchestration & workflows
 
