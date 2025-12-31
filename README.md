@@ -438,7 +438,17 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 
 ## General Tips
 
-- Change FM Model used **without code change** → AWS AppConfig or Router Agent
+- Change FM model **without code changes** → AWS AppConfig or Bedrock Intelligent Prompt Routing / Router Agent
+- Evaluate RAG quality end-to-end → Bedrock Model Evaluations with retrieve-and-generate evaluation jobs
+- Score correctness, completeness, faithfulness, coherence → Evaluator model (LLM-as-a-judge)
+- Well-defined steps, branching logic, auditable execution → AWS Step Functions
+- Track trained model versions and approvals → Amazon SageMaker Model Registry
+- Auditable history of API access → AWS CloudTrail
+- Show data source origin, schema, lineage → AWS Glue Data Catalog
+- One-off or exploratory data cleanup (UI-driven) → SageMaker Data Wrangler
+- Automated or recurring data cleanup → AWS Glue ETL
+- Detect and monitor bias or explain predictions → Amazon SageMaker Clarify
+- Enforce model version governance and documentation → SageMaker model governance (Model Registry + model cards)
 
 ### Data, Governance, and Auditability
 - **Custom domain rule checking** → AWS Lambda  
