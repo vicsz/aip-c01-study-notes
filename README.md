@@ -413,7 +413,7 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 
 ## General Tips
 
-- Change FM Model used **without code change** → AWS AppConfig
+- Change FM Model used **without code change** → AWS AppConfig or Router Agent
 
 ### Data, Governance, and Auditability
 - **Custom domain rule checking** → AWS Lambda  
