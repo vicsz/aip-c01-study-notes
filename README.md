@@ -88,6 +88,8 @@ orchestration).
 - Scanned or image-based documents processing → Bedrock Data Automation
 - Avoid custom OCR / parsing → BDA blueprints
 - Multimodal ingestion before RAG → BDA → Knowledge Base
+- Confluence / SaaS docs as source → Bedrock Knowledge Base managed connector
+- Automatic re-sync on updates → Knowledge Base ingestion jobs
 
 ### Amazon Bedrock API calls
 
@@ -107,7 +109,8 @@ orchestration).
 - **Interactive UX** → InvokeModelWithResponseStream  
 - **High-volume/offline** → StartBatchInferenceJob  
 - **Hallucination reduction, no custom RAG** → RetrieveAndGenerate  
-- **Cost estimation** → CountTokens  
+- **Cost estimation** → CountTokens
+- **Latest content grounding** → RetrieveAndGenerate
 
 ### Bedrock Guardrails & safety
 
