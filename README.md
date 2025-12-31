@@ -221,46 +221,62 @@ Choosing the right model family is primarily about **modality**, **output type**
 - Dataset-level validation (not per-record logic) → AWS Glue ETL + Data Quality rules
 - Minimize Code Changes → Likley NOT Lamnda but Guardrails instead
 
-## Rules of Thumb — Model & RAG Evaluation (Amazon Bedrock)
+## Rules of Thumb — Agent, Model & RAG Evaluation and Performance
 
 ### Core evaluation selection
-- **Compare multiple FMs on the same task** → **Bedrock Model Evaluations**
-- **Evaluate RAG end-to-end (retrieval + answer quality)** → **RAG evaluation (retrieve-and-generate)**
-- **Evaluate retrieval quality only** → **RAG evaluation (retrieve-only)**
-- **Measure correctness, completeness, faithfulness** → **Bedrock evaluation jobs (LLM-as-judge)**
-- **Have ground-truth answers and ideal contexts** → **Provide reference answers + reference contexts in S3**
-- **Minimize custom evaluation infrastructure** → **Use Bedrock evaluation jobs**
+- Compare multiple foundation models on the same task → Bedrock Model Evaluations
+- Evaluate RAG end-to-end (retrieval + answer quality) → RAG evaluation (retrieve-and-generate)
+- Evaluate retrieval quality only → RAG evaluation (retrieve-only)
+- Measure correctness, completeness, faithfulness, coherence → Bedrock evaluation jobs (LLM-as-judge)
+- Have ground-truth answers and ideal contexts → Provide reference answers + reference contexts in S3
+- Minimize custom evaluation infrastructure → Use Bedrock evaluation jobs
 
-### What NOT to use
-- **Latency, token count, error rate ≠ model quality** → **Do not use CloudWatch for evaluation**
-- **User feedback ≠ ground truth** → **Not sufficient for model comparison**
-- **Manual review ≠ scalable evaluation** → **Fails automation requirement**
-- **Operational monitoring ≠ evaluation** → **CloudWatch is for ops, not quality**
+### Agent-specific evaluation
+- Evaluate agent tool selection, reasoning flow, and final output → Bedrock Agent Evaluations
+- Validate agent behavior across scenarios (happy path + edge cases) → Agent evaluations with predefined prompts
+- Compare agent versions or configurations → Agent evaluations (same inputs, different configs)
 
 ### RAG-specific rules
-- **Unsure whether errors come from retrieval or generation** → **Run retrieve-only evaluation first**
-- **“Is the model using the right documents?”** → **Retrieve-only RAG evaluation**
-- **“Is the final answer correct and grounded?”** → **Retrieve-and-generate RAG evaluation**
-- **Need citation coverage metrics** → **RAG evaluation with reference contexts**
-- **Tuning chunking, filters, or index settings** → **Retrieve-only evaluation before prompt/model changes**
+- Unsure whether errors come from retrieval or generation → Run retrieve-only evaluation first
+- “Is the model using the right documents?” → Retrieve-only RAG evaluation
+- “Is the final answer correct and grounded?” → Retrieve-and-generate RAG evaluation
+- Need citation coverage or document faithfulness metrics → RAG evaluation with reference contexts
+- Tuning chunking, filters, metadata, or index settings → Retrieve-only evaluation before prompt or model changes
 
 ### Dataset & workflow clues
-- **Prompt dataset already in S3** → **Bedrock evaluation jobs**
-- **Pre-production model bake-off** → **Model Evaluations**
-- **Repeatable, automated scoring required** → **Evaluation jobs, not ad-hoc scripts**
-- **LLM-as-judge explicitly mentioned** → **Bedrock evaluation (by definition)**
+- Prompt or evaluation dataset already in S3 → Bedrock evaluation jobs
+- Pre-production model or agent bake-off → Model Evaluations
+- Repeatable, automated scoring required → Evaluation jobs (not ad-hoc scripts)
+- LLM-as-judge explicitly mentioned → Bedrock evaluation jobs (by definition)
+
+### What NOT to use for quality evaluation
+- Latency, token count, error rate ≠ model quality → Do not use CloudWatch metrics
+- User feedback alone ≠ ground truth → Not sufficient for model comparison
+- Manual review ≠ scalable evaluation → Fails automation and repeatability
+- Operational monitoring ≠ evaluation → CloudWatch is for ops, not correctness
+
+### Supporting services (where they fit)
+- CloudWatch → Operational health (latency, errors, throttling)
+- CloudWatch Synthetics → Endpoint availability and basic response checks (not GenAI quality)
+- Bedrock Guardrails → Safety enforcement, not quality scoring
+- SageMaker Clarify → Bias detection and explainability (classification/regression models, not LLM text quality)
+- Amazon Augmented AI (A2I) → Human review for low-confidence or high-risk outputs (quality control, not automated evaluation)
 
 ### Fast mental mapping
-- **Ops health** → **CloudWatch**
-- **Safety enforcement** → **Guardrails**
-- **Retrieval quality** → **RAG eval (retrieve-only)**
-- **Answer quality** → **RAG eval (retrieve-and-generate)**
-- **Model comparison** → **Model Evaluations**
+- Ops health → CloudWatch
+- Endpoint up/down checks → CloudWatch Synthetics
+- Safety & compliance → Guardrails
+- Retrieval quality → RAG eval (retrieve-only)
+- Answer quality & grounding → RAG eval (retrieve-and-generate)
+- Model or agent comparison → Model / Agent Evaluations
+- Bias & explainability (non-LLM) → SageMaker Clarify
+- Human review loops → Amazon A2I
 
 ### Memory hooks
-- **Quality ≠ latency** → **Use evaluation jobs**
-- **CloudWatch tells you how fast; Bedrock eval tells you how right**
-- **RAG problems need RAG evaluation modes**
+- Quality ≠ latency → Use evaluation jobs
+- CloudWatch tells you how fast; Bedrock eval tells you how right
+- RAG problems require RAG evaluation modes
+- Agents need agent-specific evaluations, not just model evals
 
 ## Amazon SageMaker family
 
