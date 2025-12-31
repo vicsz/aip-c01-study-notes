@@ -178,6 +178,23 @@ Choosing the right model and tuning its generation parameters are essential for 
 
 **Exam note:** Perplexity does **not** measure hallucinations or grounding; use task-specific metrics or human review for GenAI apps.
 
+## ReAct vs Agents vs Flows (Exam Comparison)
+| Aspect | **ReAct (Step Functions)** | **Bedrock Agents** | **Bedrock Flows** |
+|---|---|---|---|
+| What it is | Explicit state-machine reasoning | Model-driven tool use | Visual orchestration |
+| Who controls flow | **You (code / states)** | **Model** | **You (diagram)** |
+| Reasoning visibility | **High (per-step outputs)** | Medium (agent traces) | Medium |
+| Branching | **Deterministic** | Implicit | Explicit (limited) |
+| Auditability | **High** | Medium | Medium |
+| Best fit | Regulated, high-risk decisions | Conversational assistants | Simple pipelines |
+| Determinism | **High** | Medium | Medium |
+| Typical exam use | Investigations, compliance | Chatbots, helpers | Low-code workflows |
+
+### Quick decision guide
+- **Need auditability or guarantees** → **ReAct**
+- **Need autonomy and flexibility** → **Agents**
+- **Need visual, low-code orchestration** → **Flows**
+
 ## Quality & Safety Gates in a Production GenAI Pipeline (Training vs Inference)
 
 | Layer question | Applies to | What it protects against | Typical problems | Common AWS tools |
