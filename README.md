@@ -85,6 +85,9 @@ orchestration).
 **Rules of Thumb**  
 - **Multi-Region Failover** → Bedrock cross-Region inference (not traditional Route-53 approach)
 - **Dynamic model selection by request complexity** → **Intelligent Prompt Routing**
+- Scanned or image-based documents processing → Bedrock Data Automation
+- Avoid custom OCR / parsing → BDA blueprints
+- Multimodal ingestion before RAG → BDA → Knowledge Base
 
 ### Amazon Bedrock API calls
 
