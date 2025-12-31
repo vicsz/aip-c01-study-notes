@@ -96,7 +96,7 @@ orchestration).
 - **PutModelInvocationLoggingConfiguration** – Enable prompt/response logging for **auditability and debugging**.
 - **ListFoundationModels / GetFoundationModel** – Discover available models and their capabilities (text, embeddings, multimodal).
 
-**Exam heuristics:**  
+**Rules of Thumb**  
 - **Interactive UX** → InvokeModelWithResponseStream  
 - **High-volume/offline** → StartBatchInferenceJob  
 - **Hallucination reduction, no custom RAG** → RetrieveAndGenerate  
@@ -159,7 +159,7 @@ Choosing the right model and tuning its generation parameters are essential for 
 - **ROUGE** – Recall-focused overlap metric; use for **summarization** quality.
 - **BERTScore** – Embedding-based semantic similarity; use for **meaning preservation** in free-form text.
 
-**Rule of thumb:**  
+**Rules of thumb:**  
 - **Model training quality** → Perplexity  
 - **Translation** → BLEU  
 - **Summarization** → ROUGE  
