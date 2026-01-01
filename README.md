@@ -586,6 +586,7 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - Score correctness, completeness, faithfulness, coherence → Evaluator model (LLM-as-a-judge)
 - Well-defined steps, branching logic, auditable execution → AWS Step Functions
 - Track trained model versions and approvals → Amazon SageMaker Model Registry
+- Track prompt templates with versioning, approval workflows → Amazon Bedrock Prompt Management
 - Auditable history of API access → AWS CloudTrail
 - Show data source origin, schema, lineage → AWS Glue Data Catalog
 - One-off or exploratory data cleanup (UI-driven) → SageMaker Data Wrangler
