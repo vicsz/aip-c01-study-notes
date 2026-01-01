@@ -274,6 +274,7 @@ Choosing the right model family is primarily about **modality**, **output type**
 - Bias in model outputs (inference / generated text) → BOLD
 - User sentiment analysis → Amazon Comprehend
 - Human review loops → Amazon A2I
+- GenAI runtime visibility → CloudWatch Generative AI observability
 
 ### Memory hooks
 - Quality ≠ latency → Use evaluation jobs
