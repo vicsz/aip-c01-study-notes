@@ -275,6 +275,7 @@ Choosing the right model family is primarily about **modality**, **output type**
 - User sentiment analysis → Amazon Comprehend
 - Human review loops → Amazon A2I
 - GenAI runtime visibility → CloudWatch Generative AI observability
+- Per-user tracking, cost attribution, or traffic analysis → requestMetadata + CloudWatch Logs Insights
 
 ### Memory hooks
 - Quality ≠ latency → Use evaluation jobs
