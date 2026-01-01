@@ -2,8 +2,6 @@
 
 ## Useful Links
 
-## Useful Links
-
 ### Official AWS resources
 - Official Exam Guide – AWS Certified Generative AI Developer – Professional (AIP-C01)  
   https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/certification/approved/pdfs/docs-aip/AWS-Certified-Generative-AI-Developer-Pro_Exam-Guide.pdf
