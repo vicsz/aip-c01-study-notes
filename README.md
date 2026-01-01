@@ -301,8 +301,17 @@ Choosing the right model family is primarily about **modality**, **output type**
 
 *Note:*  Use **SageMaker** when you need full control over training or hosting models in a VPC.  Use **Bedrock** when you want managed foundation models and serverless inference.  In the exam, be ready to choose between these options based on requirements such as control vs. convenience, data privacy, cost and supported frameworks.
 
-## AWS Glue (data prep)
+### DJL (Deep Java Library) 
+- **Used for**: High-throughput LLM inference on SageMaker (multi-GPU)
+- **Key knobs**: Continuous batching, tensor parallelism, replicas
+- **Utilization fix**:
+  - Prompts much shorter than max → **lower max sequence length**
+  - Model fits on fewer GPUs → **reduce tensor parallelism, increase replicas**
+- **Not for**: Training, fine-tuning, evaluation
+**Memory rule**:  
+> Tune **parallelism + sequence length** before adding instances.
 
+## AWS Glue (data prep)
 - **Crawlers** – Discover and infer schema from data sources.
 - **Data Catalog** – Central metadata store for tables and partitions.
 - **Glue Studio** – Visual ETL development environment.
@@ -596,19 +605,17 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - Test guardrails offline → Model Evaluation jobs
 
 ### Data, Governance, and Auditability
-- **Custom domain rule checking** → AWS Lambda  
-- **Auditable access** → CloudTrail + IAM (not custom application logs)  
-- **Tracking S3 data sources and lineage** → AWS Glue Data Catalog  
-- **Regulated industries** → Glue Data Catalog, CloudTrail, metadata tags, IAM-based access control  
-
-- **Data cleaning, PII masking, intent classification before LLMs** → **AWS Lambda + Amazon Comprehend** (**not Guardrails, not Macie**)  
+- **Custom domain rule checking** → AWS Lambda
+- **Auditable access** → CloudTrail + IAM (not custom application logs)
+- **Tracking S3 data sources and lineage** → AWS Glue Data Catalog
+- **Regulated industries** → Glue Data Catalog, CloudTrail, metadata tags, IAM-based access control
+- **Data cleaning, PII masking, intent classification before LLMs** → **AWS Lambda + Amazon Comprehend** (**not Guardrails, not Macie**)
   - **Exam gotcha:** On most AWS exams, PII → **Macie**. In Bedrock / GenAI flows, **pre-model PII → Comprehend**.
-
 - **Blocking malformed, abusive, or obviously malicious requests** → **Amazon API Gateway**
   - Use when the question mentions **“before backend services”**, **“request validation”**, or **“first line of defense”**
   - API Gateway handles **structure & pattern enforcement**, not semantic understanding
   - **Never replaces** Comprehend or Guardrails
-
+    
 - **Rule:**  
   **At the edge / before compute** → API Gateway (schema, size, regex, allow/deny)  
   **Before the model** → Lambda + Comprehend (PII + intent)  
