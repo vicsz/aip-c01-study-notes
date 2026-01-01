@@ -317,8 +317,9 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
   - Answers: *“Who can query which columns/rows?”*
 
 **Rule of thumb**
-- *Knowing what data exists* → **Glue**
-- *Controlling who can access it* → **Lake Formation**
+- Knowing what data exists* → Glue
+- Controlling who can access it → Lake Formation
+- S3 Fine grained permissions → Lake Formation 
 
 ## Model Context Protocol (MCP)
 - **MCP** – Standardized protocol that lets LLM agents call external tools safely and consistently.
