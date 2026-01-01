@@ -84,6 +84,7 @@ orchestration).
 
 **Rules of Thumb**  
 - Multi-Region Failover → Bedrock cross-Region inference (not traditional Route-53 approach)
+- Multi-Region performance routing → inference profiles
 - Dynamic model selection by request complexity → Intelligent Prompt Routing
 - Scanned or image-based documents processing → Bedrock Data Automation
 - Avoid custom OCR / parsing → BDA blueprints
@@ -259,7 +260,7 @@ Choosing the right model family is primarily about **modality**, **output type**
 - CloudWatch → Operational health (latency, errors, throttling)
 - CloudWatch Synthetics → Endpoint availability and basic response checks (not GenAI quality)
 - Bedrock Guardrails → Safety enforcement, not quality scoring
-- SageMaker Clarify → Bias detection and explainability (classification/regression models, not LLM text quality)
+- SageMaker Clarify → Bias detection (for training data) and explainability (classification/regression models, not LLM text quality)
 - Amazon Augmented AI (A2I) → Human review for low-confidence or high-risk outputs (quality control, not automated evaluation)
 
 ### Fast mental mapping
@@ -270,6 +271,8 @@ Choosing the right model family is primarily about **modality**, **output type**
 - Answer quality & grounding → RAG eval (retrieve-and-generate)
 - Model or agent comparison → Model / Agent Evaluations
 - Bias & explainability (non-LLM) → SageMaker Clarify
+- Bias in model outputs (inference / generated text) → BOLD
+- User sentiment analysis → Amazon Comprehend
 - Human review loops → Amazon A2I
 
 ### Memory hooks
@@ -361,6 +364,14 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
   - Prefer **hybrid search** (keyword + vector) for better relevance
   - Cache frequent queries upstream when possible
 
+- Natural language queries → Neural search
+- Semantic similarity required → Dense vectors
+- Exact terms or identifiers matter → Sparse (BM25)
+- Mixed technical + natural language content → Sparse + Dense hybrid
+- Relevance tuning or scoring mentioned → Hybrid
+- If unsure → Hybrid
+- If hybrid unavailable → Dense
+
 #### OpenSearch Neural Plugin 
 - Use when you want OpenSearch to accept **raw text queries** and generate embeddings internally (no client-side embedding code).
 - Pick when you want **OpenSearch ingest/search pipelines** to call **Bedrock embedding models directly** via a connector.
@@ -417,6 +428,14 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - Automatic index sync on S3 changes → S3 event → StartIngestionJob
 - Avoid cluster management → OpenSearch Serverless
 - DIY pgvector → Only if you need SQL semantics outside RAG
+- Search engine + high QPS + strict latency requirements → Amazon OpenSearch (provisioned)
+- Need fine-grained relevance tuning (boosts, hybrid scoring, ranking logic) → Amazon OpenSearch (sparse + dense hybrid)
+- Managed RAG with minimal infrastructure and glue code → Amazon Bedrock Knowledge Bases
+- Enterprise document search with built-in connectors and managed relevance → Amazon Kendra
+- Serverless search with lower operational overhead but fewer tuning knobs → Amazon OpenSearch Serverless
+- Return snippets, highlights, and document references at scale → Traditional search engine (OpenSearch/Kendra), not pure RAG
+- RAG for answer generation, not search ranking → Bedrock Knowledge Bases
+- Need to tune relevance independently of the FM → Search layer (OpenSearch/Kendra), not the model
 
 #### Metadata & filtering:
 - Simple metadata filtering → metadata.json in Knowledge Base
