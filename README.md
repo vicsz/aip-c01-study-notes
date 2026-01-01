@@ -395,8 +395,8 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 
 - Amazon Aurora (PostgreSQL) supports the **pgvector** extension.  Use for small/medium datasets when you need SQL capabilities alongside vector similarity search.  Supports **HNSW** and **IVF** indices.
 
-### MemoryDB
-
+## ElastiCache & MemoryDB
+- **ElastiCache (Valkey)** – Provides in‑memory vector search for ultra‑low‑latency queries. (more setup needed then ElasticCache)
 - **MemoryDB** – Durable, in‑memory vector store; fully managed and designed for high‑throughput workloads.
 
 ### DynamoDB
