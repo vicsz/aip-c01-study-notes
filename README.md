@@ -85,6 +85,7 @@ orchestration).
 **Rules of Thumb**  
 - Multi-Region Failover → Bedrock cross-Region inference (not traditional Route-53 approach)
 - Multi-Region performance routing → inference profiles
+- Too many requests and must keep the same model with minimal ops → Bedrock cross-Region inference
 - Dynamic model selection by request complexity → Intelligent Prompt Routing
 - Scanned or image-based documents processing → Bedrock Data Automation
 - Avoid custom OCR / parsing → BDA blueprints
