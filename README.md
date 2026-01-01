@@ -566,6 +566,7 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - Automated or recurring data cleanup → AWS Glue ETL
 - Detect and monitor bias or explain predictions (training data / not prompt) → Amazon SageMaker Clarify
 - Enforce model version governance and documentation → SageMaker model governance (Model Registry + model cards)
+- Knowledge Base ingestion troubleshooting → CloudWatch Logs + Logs Insights
 
 ### Data, Governance, and Auditability
 - **Custom domain rule checking** → AWS Lambda  
