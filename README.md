@@ -132,7 +132,7 @@ orchestration).
 ### Bedrock Knowledge Base vs. custom RAG
 
 - Use **Knowledge Bases** when you want a fully managed RAG solution with minimal code.  AWS manages ingestion, embedding and retrieval across supported vector stores.
-- Build **custom RAG** when you need control over chunking, embeddings or storage.  You might integrate **OpenSearch**, **Aurora pgvector**, **Neptune**, **S3 Vectors**, **ElastiCache**, **MemoryDB**, **Pinecone** or third‑party vector stores.
+- Build **custom RAG** when you need control over chunking, embeddings or storage.  You might integrate **OpenSearch**, **Aurora pgvector**, **Neptune**, **S3 Vectors**, or third‑party vector stores.
 
 ## Multi‑agent systems & patterns
 
@@ -395,9 +395,8 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 
 - Amazon Aurora (PostgreSQL) supports the **pgvector** extension.  Use for small/medium datasets when you need SQL capabilities alongside vector similarity search.  Supports **HNSW** and **IVF** indices.
 
-### ElastiCache & MemoryDB
+### MemoryDB
 
-- **ElastiCache (Valkey)** – Provides in‑memory vector search for ultra‑low‑latency queries.
 - **MemoryDB** – Durable, in‑memory vector store; fully managed and designed for high‑throughput workloads.
 
 ### DynamoDB
@@ -417,7 +416,7 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - **OpenSearch** – Best general‑purpose engine for high‑performance RAG.
 - **S3 Vectors** – Cheapest storage for large collections.
 - **Aurora pgvector** – SQL + vectors for moderate datasets.
-- **ElastiCache / MemoryDB** – Ultra‑fast, in‑memory search.
+- **MemoryDB** – Ultra‑fast, in‑memory search.
 - **Pinecone** – Managed, serverless and auto‑scaling; good for ease of use and cross‑cloud portability.
 - **MongoDB Atlas** – Document DB + vector search in one platform.
 
