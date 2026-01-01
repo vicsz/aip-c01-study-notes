@@ -568,6 +568,19 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - Enforce model version governance and documentation → SageMaker model governance (Model Registry + model cards)
 - Knowledge Base ingestion troubleshooting → CloudWatch Logs + Logs Insights
 
+### Bedrock Model Evaluation
+1. **Define evaluation metrics** → correctness, completeness, faithfulness, fluency
+2. **Prepare evaluation dataset (S3)** → prompts + reference answers (and reference contexts for RAG)
+3. **Run Bedrock Model Evaluation jobs**  → use **LLM-as-a-judge (evaluator model)** to score outputs automatically
+4. **Apply quality gates** → thresholds + approval workflow via **AWS Step Functions**
+5. **Finalize decision with evaluation report** → compare models (baseline vs candidate) and approve promotion
+
+**Key rules of thumb**
+- **Automated scoring** → Bedrock Model Evaluations (not CloudWatch, not manual review)  
+- **Correctness / faithfulness metrics** → Evaluator FM (LLM-as-judge)  
+- **Human approval required** → Step Functions gate (not just dashboards)  
+- **RAG evaluation** → use *retrieve-and-generate* jobs, not retrieve-only
+
 ### Data, Governance, and Auditability
 - **Custom domain rule checking** → AWS Lambda  
 - **Auditable access** → CloudTrail + IAM (not custom application logs)  
