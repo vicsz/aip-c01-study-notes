@@ -22,7 +22,7 @@
 ### Third-party prep
 - Ultimate AWS Certified Generative AI Developer – Professional (Udemy, Frank Kane + Stéphane Maarek)  
   https://www.udemy.com/course/ultimate-aws-certified-generative-ai-developer-professional  
-  Notes: cleaner organization than Skill Builder; watch at 1.25×+ for efficiency
+  Notes: cleaner organization than Skill Builder; watch at 1.25×+ for efficiency, includes 75 practice questions
 
 ## General AI concepts
 
