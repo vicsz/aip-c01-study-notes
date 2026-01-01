@@ -1,18 +1,30 @@
 # AWS Certified Generative AI Developer - Professional (AIP-C01) Exam Study Notes
 
 ## Useful Links
-- [Official Exam Guide](https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/certification/approved/pdfs/docs-aip/AWS-Certified-Generative-AI-Developer-Pro_Exam-Guide.pdf)
-- [Ultimate AWS Certified Generative AI Developer Professional - Udemy - Frank Kane + Stephane Maarek](https://www.udemy.com/course/ultimate-aws-certified-generative-ai-developer-professional) -- cleaner organization then AWS SkillBuilder , watch in 1.25x+ 
 
-## Exam overview & recurring themes
+## Useful Links
 
-- **Professional‑level, scenario‑heavy exam.**  
-- **Architecture + AI.**  The exam tests your ability to design **production‑grade GenAI solutions** on AWS: not just prompts, but data ingestion, vector search, security, orchestration and cost optimisation.  Treat it as a hybrid of the AWS Solutions Architect Pro and a GenAI certification.
-- **Emphasis on Amazon Bedrock and Retrieval‑Augmented Generation (RAG).**  Many questions require selecting appropriate **foundation models**, integrating **Bedrock APIs**, and designing **RAG pipelines** (ingest → chunk → embed → store → retrieve).
-- **Cross‑service integration.**  Expect scenarios combining **API Gateway**, **Lambda**, **Step Functions**, **S3** and vector stores with Bedrock.  Knowing when to use **AWS Glue**, **SageMaker**, or **Kendra** for data ingestion and search is critical.
-- **Security & governance.**  Questions  test **least‑privilege IAM**, **encryption (KMS)**, **VPC endpoints/PrivateLink**, **data privacy** and **AI guardrails**.  You must recognise threats like **prompt injection** and design for compliance.
-- **Cost, performance & monitoring.**  Understand pricing for **Bedrock vs. SageMaker**, when to use **serverless vs. provisioned endpoints**, and how to monitor token usage, latency and model drift.
-- **Decision‑point trade‑offs.**  Know when to **fine‑tune** vs. use **RAG**, when to choose **Bedrock** vs. **SageMaker**, and when to favour **HNSW** vs. **IVF** vector indices.
+### Official AWS resources
+- Official Exam Guide – AWS Certified Generative AI Developer – Professional (AIP-C01)  
+  https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/certification/approved/pdfs/docs-aip/AWS-Certified-Generative-AI-Developer-Pro_Exam-Guide.pdf
+
+### AWS Skill Builder (official practice content)
+- Official Bonus Questions (25 questions, via BenchPrep)  
+  https://awscertificationpractice.benchprep.com/app/official-bonus-questions-aws-certified-generative-ai-developer-professional-aip-c01#exams
+
+- Official Practice Question Set (20 questions, via BenchPrep)  
+  https://awscertificationpractice.benchprep.com/app/official-practice-question-set-aws-certified-generative-ai-developer-professional-aip-c01?locale=en-us#exams
+
+- Official Pretest (75 questions)  
+  https://skillbuilder.aws/learn/24FDAZ9UKG/official-pretest-aws-certified--generative-ai-developer--professional-aipc01--english/VFBSB1C83U?parentId=4SCMN2659K
+
+- Domain Walkthrough Question Sets (Domains 1–5)  
+  10 questions total (2 per domain); good step-by-step walkthroughs of **exam-style reasoning**
+
+### Third-party prep
+- Ultimate AWS Certified Generative AI Developer – Professional (Udemy, Frank Kane + Stéphane Maarek)  
+  https://www.udemy.com/course/ultimate-aws-certified-generative-ai-developer-professional  
+  Notes: cleaner organization than Skill Builder; watch at 1.25×+ for efficiency
 
 ## General AI concepts
 
