@@ -581,6 +581,14 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - **Human approval required** → Step Functions gate (not just dashboards)  
 - **RAG evaluation** → use *retrieve-and-generate* jobs, not retrieve-only
 
+### Bedrock Guardrails Observability
+- Detect interventions → InvocationIntervened metric
+- Identify input vs output trigger → GuardrailContentSource
+- Identify exact policy fired → Guardrail tracing + GuardrailPolicyType
+- Tune guardrails safely → Tracing required
+- Explain customer-facing blocks → Tracing (not metrics alone)
+- Test guardrails offline → Model Evaluation jobs
+
 ### Data, Governance, and Auditability
 - **Custom domain rule checking** → AWS Lambda  
 - **Auditable access** → CloudTrail + IAM (not custom application logs)  
