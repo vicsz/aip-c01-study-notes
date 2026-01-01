@@ -13,7 +13,7 @@
 - Official Practice Question Set (20 questions, via BenchPrep)  
   https://awscertificationpractice.benchprep.com/app/official-practice-question-set-aws-certified-generative-ai-developer-professional-aip-c01?locale=en-us#exams
 
-- Official Pretest (75 questions) - SkillBuilder Subscription needed !! 
+- Official Pretest (75 questions) - SkillBuilder Subscription needed !!  
   https://skillbuilder.aws/learn/24FDAZ9UKG/official-pretest-aws-certified--generative-ai-developer--professional-aipc01--english/
 
 - Domain Walkthrough Question Sets (Domains 1–5)  
