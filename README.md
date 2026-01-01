@@ -423,6 +423,12 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - **Pinecone** – Managed, serverless and auto‑scaling; good for ease of use and cross‑cloud portability.
 - **MongoDB Atlas** – Document DB + vector search in one platform.
 
+### RAG Relevance Optimization 
+- Too many relevant docs, best ones ranked low → **Rerankers**
+- Poor recall with vector-only search → **Hybrid search (vector + keyword)**
+- Want fastest improvement, least infra → **Knowledge Bases + OpenSearch + Bedrock rerankers**
+- Avoid custom ranking logic unless explicitly required
+
 ### Rules of Thumb
 - Default RAG on AWS → Bedrock Knowledge Bases
 - Documents already in S3 → S3-backed Knowledge Base
