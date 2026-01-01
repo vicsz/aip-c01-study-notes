@@ -562,7 +562,7 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - Show data source origin, schema, lineage → AWS Glue Data Catalog
 - One-off or exploratory data cleanup (UI-driven) → SageMaker Data Wrangler
 - Automated or recurring data cleanup → AWS Glue ETL
-- Detect and monitor bias or explain predictions → Amazon SageMaker Clarify
+- Detect and monitor bias or explain predictions (training data / not prompt) → Amazon SageMaker Clarify
 - Enforce model version governance and documentation → SageMaker model governance (Model Registry + model cards)
 
 ### Data, Governance, and Auditability
@@ -570,9 +570,20 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - **Auditable access** → CloudTrail + IAM (not custom application logs)  
 - **Tracking S3 data sources and lineage** → AWS Glue Data Catalog  
 - **Regulated industries** → Glue Data Catalog, CloudTrail, metadata tags, IAM-based access control  
-- **Data cleaning, PII masking, intent classification before LLMs** → **AWS Lambda + Amazon Comprehend** (**not Guardrails, not Macie**)
-  - **Exam gotcha:** On all other AWS Exam PII questions point to **Macie**, not the case for this exam.
-- **Rule:** **Before the model** → Lambda + Comprehend (PII + intent) | **At invocation** → Guardrails | **At rest** → Macie
+
+- **Data cleaning, PII masking, intent classification before LLMs** → **AWS Lambda + Amazon Comprehend** (**not Guardrails, not Macie**)  
+  - **Exam gotcha:** On most AWS exams, PII → **Macie**. In Bedrock / GenAI flows, **pre-model PII → Comprehend**.
+
+- **Blocking malformed, abusive, or obviously malicious requests** → **Amazon API Gateway**
+  - Use when the question mentions **“before backend services”**, **“request validation”**, or **“first line of defense”**
+  - API Gateway handles **structure & pattern enforcement**, not semantic understanding
+  - **Never replaces** Comprehend or Guardrails
+
+- **Rule:**  
+  **At the edge / before compute** → API Gateway (schema, size, regex, allow/deny)  
+  **Before the model** → Lambda + Comprehend (PII + intent)  
+  **At invocation** → Guardrails (LLM behavior & output)  
+  **At rest** → Macie
 
 ### Networking and Security
 - **Secure private service access** → VPC endpoints / PrivateLink  
