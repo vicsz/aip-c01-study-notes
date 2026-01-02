@@ -360,31 +360,32 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 ## GenAI Security
 
 ### Identity & Access
-- Enterprise users (AD / Entra ID) → AWS IAM Identity Center + SAML/OIDC
+- Enterprise users (AD / Entra ID) → IAM Identity Center + SAML / OIDC
 - Department / OU isolation → Permission sets + IAM conditions (bedrock:ModelId)
 - Org-wide hard enforcement → SCPs (deny unapproved models regardless of IAM)
 - Least privilege → IAM policy conditions > app-layer controls
 
 ### Network Security
-- Private subnet access to Bedrock → VPC Interface Endpoint (PrivateLink)
+- Private subnet access → VPC Interface Endpoint (PrivateLink)
 - Enforce no public internet → SCP or IAM condition requiring VPC endpoint
-- Never NAT / ALB proxy for Bedrock private access (exam trap)
+- Exam trap → never NAT, ALB, or proxy Bedrock for “private-only” access
 
 ### Model & Content Controls
 - Inference-time safety → Bedrock Guardrails (topics, PII, denied content)
-- Pre-model PII / intent checks → Lambda + Comprehend
-- Post-inference enforcement → EventBridge + Lambda (not primary control)
+- Guardrail tuning & insight → enable guardrail tracing
+- Pre-model analysis (optional) → Lambda + Comprehend
+- Post-inference workflows → EventBridge + Lambda (not primary control)
 
 ### Audit & Observability
-- Authoritative audit trail → CloudTrail (Bedrock API calls)
-- Guardrail decision detail → Guardrail tracing + CloudWatch metrics
-- Org-wide visibility → Enable logging once, centrally (don’t custom-log in apps)
+- Who invoked which model → CloudTrail (Bedrock API calls)
+- Why content was blocked → Guardrail tracing + CloudWatch metrics
+- Org-wide visibility → central logging once, not per app
 
 ### Governance Patterns (Exam Favorites)
 - Restrict allowed models → SCP with bedrock:ModelId condition
 - Cross-account consistency → Identity Center permission sets
-- Compliance docs → Model cards (SageMaker Model Registry)
-- What NOT to do → Custom auth proxies, per-account IAM users, app-only controls
+- Compliance documentation → model cards (SageMaker Model Registry)
+- What not to do → custom auth proxies, per-account IAM users, prompt-only controls
 
 ## AI data stores & vector databases
 
