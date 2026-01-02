@@ -357,6 +357,35 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 - Avoid letting agents directly call raw REST APIs.
 - MCP is about **interface consistency**, not orchestration (that’s Agents / Step Functions).
 
+## GenAI Security
+
+### Identity & Access
+- Enterprise users (AD / Entra ID) → AWS IAM Identity Center + SAML/OIDC
+- Department / OU isolation → Permission sets + IAM conditions (bedrock:ModelId)
+- Org-wide hard enforcement → SCPs (deny unapproved models regardless of IAM)
+- Least privilege → IAM policy conditions > app-layer controls
+
+### Network Security
+- Private subnet access to Bedrock → VPC Interface Endpoint (PrivateLink)
+- Enforce no public internet → SCP or IAM condition requiring VPC endpoint
+- Never NAT / ALB proxy for Bedrock private access (exam trap)
+
+### Model & Content Controls
+- Inference-time safety → Bedrock Guardrails (topics, PII, denied content)
+- Pre-model PII / intent checks → Lambda + Comprehend
+- Post-inference enforcement → EventBridge + Lambda (not primary control)
+
+### Audit & Observability
+- Authoritative audit trail → CloudTrail (Bedrock API calls)
+- Guardrail decision detail → Guardrail tracing + CloudWatch metrics
+- Org-wide visibility → Enable logging once, centrally (don’t custom-log in apps)
+
+### Governance Patterns (Exam Favorites)
+- Restrict allowed models → SCP with bedrock:ModelId condition
+- Cross-account consistency → Identity Center permission sets
+- Compliance docs → Model cards (SageMaker Model Registry)
+- What NOT to do → Custom auth proxies, per-account IAM users, app-only controls
+
 ## AI data stores & vector databases
 
 ### OpenSearch
