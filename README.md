@@ -191,6 +191,15 @@ Choosing the right model family is primarily about **modality**, **output type**
 
 **Exam note:** Perplexity does **not** measure hallucinations or grounding; use task-specific metrics or human review for GenAI apps.
 
+### Model Output Tuning
+- Controlled but varied responses → temperature ~0.4–0.6, top-p ~0.7–0.9
+- Highly deterministic / repeatable output → temperature ≤0.2, low top-p
+- Some variation without hallucination risk → moderate temperature + moderate top-p
+- Creative / exploratory generation → temperature ≥0.8, high top-k or top-p
+- Strict response length requirement → response length limits or penalties
+- Prevent rambling → length penalties, not stop sequences
+- Safety- or policy-constrained output → keep temperature moderate, don’t rely on stop tokens
+
 ### Bedrock observability  - Which feature answers which debugging question?
 - *PreProcessingTrace*  → What exactly did the agent receive and how was it interpreted? (Detect prompt injection, malformed input, bad normalization)
 - *OrchestrationTrace* → Why did the agent choose this plan / tool / step order? (Debug reasoning paths, branching logic, hallucination root causes)
