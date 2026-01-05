@@ -192,15 +192,14 @@ Choosing the right model family is primarily about **modality**, **output type**
 **Exam note:** Perplexity does **not** measure hallucinations or grounding; use task-specific metrics or human review for GenAI apps.
 
 ### Bedrock observability  - Which feature answers which debugging question?
-
-*PreProcessingTrace*  → What exactly did the agent receive and how was it interpreted? (Detect prompt injection, malformed input, bad normalization)
-*OrchestrationTrace* → Why did the agent choose this plan / tool / step order? (Debug reasoning paths, branching logic, hallucination root causes)
-*PostProcessingTrace* → How did the final answer get shaped or filtered? (Formatting issues, redactions, guardrail side effects)
-*FailureTrace* → Where and why did the agent fail? (API errors, tool timeouts, retries, broken steps)
-*GuardrailTrace* → What safety rule blocked or modified the response? (PII, toxic content, denied topics)
-*ModelInvocationInput / Output Trace* → What did the model actually see and return? (Prompt quality, grounding issues, unexpected completions)
-*CloudWatch metrics* (tokens, latency, errors) → Is the system healthy and scalable? (Throughput, throttling, cost, performance — not reasoning)
-*Golden dataset comparison* → Is behavior drifting (quality drift) or hallucinating over time? (Regression detection, quality validation)
+- *PreProcessingTrace*  → What exactly did the agent receive and how was it interpreted? (Detect prompt injection, malformed input, bad normalization)
+- *OrchestrationTrace* → Why did the agent choose this plan / tool / step order? (Debug reasoning paths, branching logic, hallucination root causes)
+- *PostProcessingTrace* → How did the final answer get shaped or filtered? (Formatting issues, redactions, guardrail side effects)
+- *FailureTrace* → Where and why did the agent fail? (API errors, tool timeouts, retries, broken steps)
+- *GuardrailTrace* → What safety rule blocked or modified the response? (PII, toxic content, denied topics)
+- *ModelInvocationInput / Output Trace* → What did the model actually see and return? (Prompt quality, grounding issues, unexpected completions)
+- *CloudWatch metrics* (tokens, latency, errors) → Is the system healthy and scalable? (Throughput, throttling, cost, performance — not reasoning)
+- *Golden dataset comparison* → Is behavior drifting (quality drift) or hallucinating over time? (Regression detection, quality validation)
 
 ## ReAct vs Agents vs Flows
 | Aspect | **ReAct (Step Functions)** | **Bedrock Agents** | **Bedrock Flows** |
@@ -466,6 +465,15 @@ Glue can appear in scenarios for **ETL** preceding embeddings or fine‑tuning.
 ### DynamoDB
 
 - Not used for vectors but valuable for storing **session state**, **metadata** and **conversation memory**.
+
+#### DynamoDB Tips (usage for chat history)
+- Chat history + scale → DynamoDB
+- Resume conversations → conversationId as partition key
+- Metadata filtering → GSI
+- Hot recent reads → DAX
+- Automatic retention → TTL
+- Avoid cron deletes → TTL beats scheduled jobs
+- If it smells like state, not search → not OpenSearch
 
 ### Pinecone
 
