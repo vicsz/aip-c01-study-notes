@@ -8,8 +8,6 @@ This exam is **closer to Pro-level certifications** in expectations and mindset,
 
 The difficulty comes less from memorization and more from **reasoning through GenAI architecture, tradeoffs, cost, security, and operational scenarios**.
 
----
-
 ## Recommended Prerequisites (Strongly Suggested)
 
 Before attempting **AIP-C01**, you should already be comfortable with:
@@ -19,8 +17,6 @@ Before attempting **AIP-C01**, you should already be comfortable with:
 
 These should realistically be considered **prerequisites**, not optional prep.  
 Having **other AWS Professional-level certifications** helps significantly, especially for architecture and security-related questions.
-
----
 
 ## Exam Style & Expectations
 
@@ -57,8 +53,6 @@ The most effective approach I found:
    - Break down questions
    - Explain *why* answers are right or wrong
    - Identify architectural patterns and traps
-
----
 
 ## Useful Links
 
