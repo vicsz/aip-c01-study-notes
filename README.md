@@ -1,4 +1,64 @@
-# AWS Certified Generative AI Developer - Professional (AIP-C01) Exam Study Notes
+# AWS Certified Generative AI Developer – Professional (AIP-C01)  
+### Exam Study Notes & Prep Guidance
+
+These are my personal study notes for the **AWS Certified Generative AI Developer – Professional (AIP-C01)** exam.  
+I passed the exam and earned **Early Adopter** status.
+
+This exam is **closer to Pro-level certifications** in expectations and mindset, but with **less technical depth** than other AWS Pro exams. It is **by far easier than the AWS Certified Advanced Networking – Specialty**, but still legitimately challenging due to gaps in available training material.
+
+The difficulty comes less from memorization and more from **reasoning through GenAI architecture, tradeoffs, cost, security, and operational scenarios**.
+
+---
+
+## Recommended Prerequisites (Strongly Suggested)
+
+Before attempting **AIP-C01**, you should already be comfortable with:
+
+- **AWS Certified AI Practitioner (AIF-C01)**  
+- **AWS Certified Solutions Architect – Associate (SAA-C03)**  
+
+These should realistically be considered **prerequisites**, not optional prep.  
+Having **other AWS Professional-level certifications** helps significantly, especially for architecture and security-related questions.
+
+---
+
+## Exam Style & Expectations
+
+Expect many questions framed around tradeoff analysis rather than raw service knowledge, often using wording such as:
+
+- **“Least operationally expensive”**
+- **“Most cost-effective”**
+- **“Simplest to operate at scale”**
+- **“Minimize ongoing maintenance”**
+
+You are frequently asked to choose between multiple *technically valid* solutions, where the correct answer depends on **operational burden, cost, security posture, and long-term maintainability** — not just whether something works.
+
+This exam assumes you already have a **strong, holistic understanding of AWS**, well beyond GenAI-specific services. You are expected to reason confidently about:
+
+- **IAM** (roles, policies, trust relationships)
+- **Service Control Policies (SCPs)**
+- **AWS Config** and governance controls
+- **Networking & security boundaries**
+- **Database options and tradeoffs**
+- **Observability** (CloudWatch, logging, metrics, alarms)
+- **Cost management and operational overhead**
+
+Because of this, having taken **at least one AWS Professional-level exam beforehand** is extremely helpful. The GenAI Developer – Professional exam builds on that architectural and operational mindset rather than teaching it from scratch.
+
+## How to Prepare (High-Level Strategy)
+
+The most effective approach I found:
+
+1. **Learn the material**
+   - Use **AWS Skill Builder** and/or **Udemy** to understand the concepts and services
+2. **Practice exam-style reasoning**
+   - Go through **official practice questions** (Skill Builder currently has the best-quality questions)
+3. **Use AI as a study partner**
+   - Break down questions
+   - Explain *why* answers are right or wrong
+   - Identify architectural patterns and traps
+
+---
 
 ## Useful Links
 
